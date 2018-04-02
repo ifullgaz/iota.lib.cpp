@@ -87,7 +87,10 @@ TEST(GetNeighborsResponse, DeserializeShouldSetFields) {
   neighbor.set("numberOfAllTransactions", 1);
   neighbor.set("numberOfInvalidTransactions", 2);
   neighbor.set("numberOfNewTransactions", 3);
-  data.set("neighbors", std::vector<IOTA::Utils::json>{ neighbor });
+
+  std::vector<IOTA::Utils::json> neighbors;
+  neighbors.push_back(std::move(neighbor));
+  data.set("neighbors", neighbors);
 
   res.deserialize(data);
 
